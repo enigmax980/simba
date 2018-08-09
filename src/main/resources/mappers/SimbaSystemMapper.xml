@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinalife.simba.mapper.SimbaSystemMapper" >
+
+    <resultMap id="BaseResultMap" type="com.chinalife.simba.bean.SimbaSystem" >
+        <id column="sys_id" property="sysId" jdbcType="INTEGER" />
+        <result column="sys_code" property="sysCode" jdbcType="VARCHAR" />
+        <result column="sys_name" property="sysName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id, message, senddate
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from appuser_message
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from appuser_message
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.chinalife.simba.bean.SimbaSystem" >
+    insert into appuser_message (id, message, senddate
+      )
+    values (#{id,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{senddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.chinalife.simba.bean.SimbaSystem" >
+        insert into appuser_message
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="message != null" >
+                message,
+            </if>
+            <if test="senddate != null" >
+                senddate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="message != null" >
+                #{message,jdbcType=VARCHAR},
+            </if>
+            <if test="senddate != null" >
+                #{senddate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chinalife.simba.bean.SimbaSystem" >
+        update appuser_message
+        <set >
+            <if test="message != null" >
+                message = #{message,jdbcType=VARCHAR},
+            </if>
+            <if test="senddate != null" >
+                senddate = #{senddate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.chinalife.simba.bean.SimbaSystem" >
+    update appuser_message
+    set message = #{message,jdbcType=VARCHAR},
+      senddate = #{senddate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+    select
+         sys_id, sys_code, sys_name
+    from smb_system
+    order by sys_id asc
+  </select>
+
+    <select id="getMessById" resultMap="BaseResultMap" parameterType="java.lang.String">
+   select
+           id, message, senddate
+   from
+        appuser_message
+       where id = #{id,jdbcType=VARCHAR}
+    order by senddate asc
+  </select>
+
+</mapper>
