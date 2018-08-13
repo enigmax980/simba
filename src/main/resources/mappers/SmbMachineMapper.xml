@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinalife.simba.dao.SmbMachineMapper">
+  <resultMap id="BaseResultMap" type="com.chinalife.simba.model.SmbMachine">
+    <id column="mach_id" jdbcType="INTEGER" property="mach_id" />
+    <result column="mach_name" jdbcType="VARCHAR" property="mach_name" />
+    <result column="mach_desc" jdbcType="VARCHAR" property="mach_desc" />
+    <result column="mach_ip" jdbcType="VARCHAR" property="mach_ip" />
+    <result column="mach_type" jdbcType="VARCHAR" property="mach_type" />
+    <result column="mach_model" jdbcType="VARCHAR" property="mach_model" />
+    <result column="net_pos" jdbcType="VARCHAR" property="net_pos" />
+    <result column="os" jdbcType="VARCHAR" property="os" />
+    <result column="os_ver" jdbcType="VARCHAR" property="os_ver" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    mach_id, mach_name, mach_desc, mach_ip, mach_type, mach_model, net_pos, os, os_ver
+  </sql>
+  <select id="selectByExample" parameterType="com.chinalife.simba.model.SmbMachineExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from smb_machine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from smb_machine
+    where mach_id = #{mach_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from smb_machine
+    where mach_id = #{mach_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chinalife.simba.model.SmbMachineExample">
+    delete from smb_machine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chinalife.simba.model.SmbMachine">
+    <selectKey keyProperty="mach_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_machine (mach_name, mach_desc, mach_ip, 
+      mach_type, mach_model, net_pos, 
+      os, os_ver)
+    values (#{mach_name,jdbcType=VARCHAR}, #{mach_desc,jdbcType=VARCHAR}, #{mach_ip,jdbcType=VARCHAR}, 
+      #{mach_type,jdbcType=VARCHAR}, #{mach_model,jdbcType=VARCHAR}, #{net_pos,jdbcType=VARCHAR}, 
+      #{os,jdbcType=VARCHAR}, #{os_ver,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinalife.simba.model.SmbMachine">
+    <selectKey keyProperty="mach_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_machine
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mach_name != null">
+        mach_name,
+      </if>
+      <if test="mach_desc != null">
+        mach_desc,
+      </if>
+      <if test="mach_ip != null">
+        mach_ip,
+      </if>
+      <if test="mach_type != null">
+        mach_type,
+      </if>
+      <if test="mach_model != null">
+        mach_model,
+      </if>
+      <if test="net_pos != null">
+        net_pos,
+      </if>
+      <if test="os != null">
+        os,
+      </if>
+      <if test="os_ver != null">
+        os_ver,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mach_name != null">
+        #{mach_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_desc != null">
+        #{mach_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_ip != null">
+        #{mach_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_type != null">
+        #{mach_type,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_model != null">
+        #{mach_model,jdbcType=VARCHAR},
+      </if>
+      <if test="net_pos != null">
+        #{net_pos,jdbcType=VARCHAR},
+      </if>
+      <if test="os != null">
+        #{os,jdbcType=VARCHAR},
+      </if>
+      <if test="os_ver != null">
+        #{os_ver,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chinalife.simba.model.SmbMachineExample" resultType="java.lang.Long">
+    select count(*) from smb_machine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update smb_machine
+    <set>
+      <if test="record.mach_id != null">
+        mach_id = #{record.mach_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mach_name != null">
+        mach_name = #{record.mach_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mach_desc != null">
+        mach_desc = #{record.mach_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mach_ip != null">
+        mach_ip = #{record.mach_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mach_type != null">
+        mach_type = #{record.mach_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mach_model != null">
+        mach_model = #{record.mach_model,jdbcType=VARCHAR},
+      </if>
+      <if test="record.net_pos != null">
+        net_pos = #{record.net_pos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.os != null">
+        os = #{record.os,jdbcType=VARCHAR},
+      </if>
+      <if test="record.os_ver != null">
+        os_ver = #{record.os_ver,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update smb_machine
+    set mach_id = #{record.mach_id,jdbcType=INTEGER},
+      mach_name = #{record.mach_name,jdbcType=VARCHAR},
+      mach_desc = #{record.mach_desc,jdbcType=VARCHAR},
+      mach_ip = #{record.mach_ip,jdbcType=VARCHAR},
+      mach_type = #{record.mach_type,jdbcType=VARCHAR},
+      mach_model = #{record.mach_model,jdbcType=VARCHAR},
+      net_pos = #{record.net_pos,jdbcType=VARCHAR},
+      os = #{record.os,jdbcType=VARCHAR},
+      os_ver = #{record.os_ver,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinalife.simba.model.SmbMachine">
+    update smb_machine
+    <set>
+      <if test="mach_name != null">
+        mach_name = #{mach_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_desc != null">
+        mach_desc = #{mach_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_ip != null">
+        mach_ip = #{mach_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_type != null">
+        mach_type = #{mach_type,jdbcType=VARCHAR},
+      </if>
+      <if test="mach_model != null">
+        mach_model = #{mach_model,jdbcType=VARCHAR},
+      </if>
+      <if test="net_pos != null">
+        net_pos = #{net_pos,jdbcType=VARCHAR},
+      </if>
+      <if test="os != null">
+        os = #{os,jdbcType=VARCHAR},
+      </if>
+      <if test="os_ver != null">
+        os_ver = #{os_ver,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mach_id = #{mach_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinalife.simba.model.SmbMachine">
+    update smb_machine
+    set mach_name = #{mach_name,jdbcType=VARCHAR},
+      mach_desc = #{mach_desc,jdbcType=VARCHAR},
+      mach_ip = #{mach_ip,jdbcType=VARCHAR},
+      mach_type = #{mach_type,jdbcType=VARCHAR},
+      mach_model = #{mach_model,jdbcType=VARCHAR},
+      net_pos = #{net_pos,jdbcType=VARCHAR},
+      os = #{os,jdbcType=VARCHAR},
+      os_ver = #{os_ver,jdbcType=VARCHAR}
+    where mach_id = #{mach_id,jdbcType=INTEGER}
+  </update>
+</mapper>

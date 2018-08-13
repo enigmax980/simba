@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinalife.simba.dao.SmbSvcInvokeMapper">
+  <resultMap id="BaseResultMap" type="com.chinalife.simba.model.SmbSvcInvoke">
+    <id column="svc_invk_id" jdbcType="INTEGER" property="svc_invk_id" />
+    <result column="src_sys_code" jdbcType="VARCHAR" property="src_sys_code" />
+    <result column="src_svc_code" jdbcType="VARCHAR" property="src_svc_code" />
+    <result column="src_pos" jdbcType="VARCHAR" property="src_pos" />
+    <result column="is_fuse" jdbcType="INTEGER" property="is_fuse" />
+    <result column="fuse_id" jdbcType="INTEGER" property="fuse_id" />
+    <result column="des_sys_code" jdbcType="VARCHAR" property="des_sys_code" />
+    <result column="des_svc_code" jdbcType="VARCHAR" property="des_svc_code" />
+    <result column="time_out" jdbcType="INTEGER" property="time_out" />
+    <result column="call_percent" jdbcType="INTEGER" property="call_percent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    svc_invk_id, src_sys_code, src_svc_code, src_pos, is_fuse, fuse_id, des_sys_code, 
+    des_svc_code, time_out, call_percent
+  </sql>
+  <select id="selectByExample" parameterType="com.chinalife.simba.model.SmbSvcInvokeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from smb_svc_invoke
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from smb_svc_invoke
+    where svc_invk_id = #{svc_invk_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from smb_svc_invoke
+    where svc_invk_id = #{svc_invk_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chinalife.simba.model.SmbSvcInvokeExample">
+    delete from smb_svc_invoke
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chinalife.simba.model.SmbSvcInvoke">
+    <selectKey keyProperty="svc_invk_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_svc_invoke (src_sys_code, src_svc_code, src_pos, 
+      is_fuse, fuse_id, des_sys_code, 
+      des_svc_code, time_out, call_percent
+      )
+    values (#{src_sys_code,jdbcType=VARCHAR}, #{src_svc_code,jdbcType=VARCHAR}, #{src_pos,jdbcType=VARCHAR}, 
+      #{is_fuse,jdbcType=INTEGER}, #{fuse_id,jdbcType=INTEGER}, #{des_sys_code,jdbcType=VARCHAR}, 
+      #{des_svc_code,jdbcType=VARCHAR}, #{time_out,jdbcType=INTEGER}, #{call_percent,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinalife.simba.model.SmbSvcInvoke">
+    <selectKey keyProperty="svc_invk_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_svc_invoke
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="src_sys_code != null">
+        src_sys_code,
+      </if>
+      <if test="src_svc_code != null">
+        src_svc_code,
+      </if>
+      <if test="src_pos != null">
+        src_pos,
+      </if>
+      <if test="is_fuse != null">
+        is_fuse,
+      </if>
+      <if test="fuse_id != null">
+        fuse_id,
+      </if>
+      <if test="des_sys_code != null">
+        des_sys_code,
+      </if>
+      <if test="des_svc_code != null">
+        des_svc_code,
+      </if>
+      <if test="time_out != null">
+        time_out,
+      </if>
+      <if test="call_percent != null">
+        call_percent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="src_sys_code != null">
+        #{src_sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="src_svc_code != null">
+        #{src_svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="src_pos != null">
+        #{src_pos,jdbcType=VARCHAR},
+      </if>
+      <if test="is_fuse != null">
+        #{is_fuse,jdbcType=INTEGER},
+      </if>
+      <if test="fuse_id != null">
+        #{fuse_id,jdbcType=INTEGER},
+      </if>
+      <if test="des_sys_code != null">
+        #{des_sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="des_svc_code != null">
+        #{des_svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="time_out != null">
+        #{time_out,jdbcType=INTEGER},
+      </if>
+      <if test="call_percent != null">
+        #{call_percent,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chinalife.simba.model.SmbSvcInvokeExample" resultType="java.lang.Long">
+    select count(*) from smb_svc_invoke
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update smb_svc_invoke
+    <set>
+      <if test="record.svc_invk_id != null">
+        svc_invk_id = #{record.svc_invk_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.src_sys_code != null">
+        src_sys_code = #{record.src_sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.src_svc_code != null">
+        src_svc_code = #{record.src_svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.src_pos != null">
+        src_pos = #{record.src_pos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.is_fuse != null">
+        is_fuse = #{record.is_fuse,jdbcType=INTEGER},
+      </if>
+      <if test="record.fuse_id != null">
+        fuse_id = #{record.fuse_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.des_sys_code != null">
+        des_sys_code = #{record.des_sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.des_svc_code != null">
+        des_svc_code = #{record.des_svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time_out != null">
+        time_out = #{record.time_out,jdbcType=INTEGER},
+      </if>
+      <if test="record.call_percent != null">
+        call_percent = #{record.call_percent,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update smb_svc_invoke
+    set svc_invk_id = #{record.svc_invk_id,jdbcType=INTEGER},
+      src_sys_code = #{record.src_sys_code,jdbcType=VARCHAR},
+      src_svc_code = #{record.src_svc_code,jdbcType=VARCHAR},
+      src_pos = #{record.src_pos,jdbcType=VARCHAR},
+      is_fuse = #{record.is_fuse,jdbcType=INTEGER},
+      fuse_id = #{record.fuse_id,jdbcType=INTEGER},
+      des_sys_code = #{record.des_sys_code,jdbcType=VARCHAR},
+      des_svc_code = #{record.des_svc_code,jdbcType=VARCHAR},
+      time_out = #{record.time_out,jdbcType=INTEGER},
+      call_percent = #{record.call_percent,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinalife.simba.model.SmbSvcInvoke">
+    update smb_svc_invoke
+    <set>
+      <if test="src_sys_code != null">
+        src_sys_code = #{src_sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="src_svc_code != null">
+        src_svc_code = #{src_svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="src_pos != null">
+        src_pos = #{src_pos,jdbcType=VARCHAR},
+      </if>
+      <if test="is_fuse != null">
+        is_fuse = #{is_fuse,jdbcType=INTEGER},
+      </if>
+      <if test="fuse_id != null">
+        fuse_id = #{fuse_id,jdbcType=INTEGER},
+      </if>
+      <if test="des_sys_code != null">
+        des_sys_code = #{des_sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="des_svc_code != null">
+        des_svc_code = #{des_svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="time_out != null">
+        time_out = #{time_out,jdbcType=INTEGER},
+      </if>
+      <if test="call_percent != null">
+        call_percent = #{call_percent,jdbcType=INTEGER},
+      </if>
+    </set>
+    where svc_invk_id = #{svc_invk_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinalife.simba.model.SmbSvcInvoke">
+    update smb_svc_invoke
+    set src_sys_code = #{src_sys_code,jdbcType=VARCHAR},
+      src_svc_code = #{src_svc_code,jdbcType=VARCHAR},
+      src_pos = #{src_pos,jdbcType=VARCHAR},
+      is_fuse = #{is_fuse,jdbcType=INTEGER},
+      fuse_id = #{fuse_id,jdbcType=INTEGER},
+      des_sys_code = #{des_sys_code,jdbcType=VARCHAR},
+      des_svc_code = #{des_svc_code,jdbcType=VARCHAR},
+      time_out = #{time_out,jdbcType=INTEGER},
+      call_percent = #{call_percent,jdbcType=INTEGER}
+    where svc_invk_id = #{svc_invk_id,jdbcType=INTEGER}
+  </update>
+</mapper>

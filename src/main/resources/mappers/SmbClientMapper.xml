@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinalife.simba.dao.SmbClientMapper">
+  <resultMap id="BaseResultMap" type="com.chinalife.simba.model.SmbClient">
+    <id column="clnt_id" jdbcType="INTEGER" property="clnt_id" />
+    <result column="clnt_code" jdbcType="VARCHAR" property="clnt_code" />
+    <result column="clnt_name" jdbcType="VARCHAR" property="clnt_name" />
+    <result column="sys_code" jdbcType="VARCHAR" property="sys_code" />
+    <result column="srv_code" jdbcType="VARCHAR" property="srv_code" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    clnt_id, clnt_code, clnt_name, sys_code, srv_code
+  </sql>
+  <select id="selectByExample" parameterType="com.chinalife.simba.model.SmbClientExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from smb_client
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from smb_client
+    where clnt_id = #{clnt_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from smb_client
+    where clnt_id = #{clnt_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chinalife.simba.model.SmbClientExample">
+    delete from smb_client
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chinalife.simba.model.SmbClient">
+    <selectKey keyProperty="clnt_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_client (clnt_code, clnt_name, sys_code, 
+      srv_code)
+    values (#{clnt_code,jdbcType=VARCHAR}, #{clnt_name,jdbcType=VARCHAR}, #{sys_code,jdbcType=VARCHAR}, 
+      #{srv_code,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinalife.simba.model.SmbClient">
+    <selectKey keyProperty="clnt_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_client
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clnt_code != null">
+        clnt_code,
+      </if>
+      <if test="clnt_name != null">
+        clnt_name,
+      </if>
+      <if test="sys_code != null">
+        sys_code,
+      </if>
+      <if test="srv_code != null">
+        srv_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clnt_code != null">
+        #{clnt_code,jdbcType=VARCHAR},
+      </if>
+      <if test="clnt_name != null">
+        #{clnt_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sys_code != null">
+        #{sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_code != null">
+        #{srv_code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chinalife.simba.model.SmbClientExample" resultType="java.lang.Long">
+    select count(*) from smb_client
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update smb_client
+    <set>
+      <if test="record.clnt_id != null">
+        clnt_id = #{record.clnt_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clnt_code != null">
+        clnt_code = #{record.clnt_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clnt_name != null">
+        clnt_name = #{record.clnt_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sys_code != null">
+        sys_code = #{record.sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srv_code != null">
+        srv_code = #{record.srv_code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update smb_client
+    set clnt_id = #{record.clnt_id,jdbcType=INTEGER},
+      clnt_code = #{record.clnt_code,jdbcType=VARCHAR},
+      clnt_name = #{record.clnt_name,jdbcType=VARCHAR},
+      sys_code = #{record.sys_code,jdbcType=VARCHAR},
+      srv_code = #{record.srv_code,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinalife.simba.model.SmbClient">
+    update smb_client
+    <set>
+      <if test="clnt_code != null">
+        clnt_code = #{clnt_code,jdbcType=VARCHAR},
+      </if>
+      <if test="clnt_name != null">
+        clnt_name = #{clnt_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sys_code != null">
+        sys_code = #{sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_code != null">
+        srv_code = #{srv_code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where clnt_id = #{clnt_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinalife.simba.model.SmbClient">
+    update smb_client
+    set clnt_code = #{clnt_code,jdbcType=VARCHAR},
+      clnt_name = #{clnt_name,jdbcType=VARCHAR},
+      sys_code = #{sys_code,jdbcType=VARCHAR},
+      srv_code = #{srv_code,jdbcType=VARCHAR}
+    where clnt_id = #{clnt_id,jdbcType=INTEGER}
+  </update>
+</mapper>

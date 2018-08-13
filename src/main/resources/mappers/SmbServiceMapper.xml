@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinalife.simba.dao.SmbServiceMapper">
+  <resultMap id="BaseResultMap" type="com.chinalife.simba.model.SmbService">
+    <id column="svc_id" jdbcType="INTEGER" property="svc_id" />
+    <result column="svc_code" jdbcType="VARCHAR" property="svc_code" />
+    <result column="svc_name" jdbcType="VARCHAR" property="svc_name" />
+    <result column="sys_code" jdbcType="VARCHAR" property="sys_code" />
+    <result column="srv_code" jdbcType="VARCHAR" property="srv_code" />
+    <result column="plan_tps" jdbcType="INTEGER" property="plan_tps" />
+    <result column="plan_resp_time" jdbcType="INTEGER" property="plan_resp_time" />
+    <result column="stat_resp_time" jdbcType="INTEGER" property="stat_resp_time" />
+    <result column="is_ratelmt" jdbcType="INTEGER" property="is_ratelmt" />
+    <result column="rtlmt_id" jdbcType="INTEGER" property="rtlmt_id" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    svc_id, svc_code, svc_name, sys_code, srv_code, plan_tps, plan_resp_time, stat_resp_time, 
+    is_ratelmt, rtlmt_id
+  </sql>
+  <select id="selectByExample" parameterType="com.chinalife.simba.model.SmbServiceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from smb_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from smb_service
+    where svc_id = #{svc_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from smb_service
+    where svc_id = #{svc_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chinalife.simba.model.SmbServiceExample">
+    delete from smb_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chinalife.simba.model.SmbService">
+    <selectKey keyProperty="svc_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_service (svc_code, svc_name, sys_code, 
+      srv_code, plan_tps, plan_resp_time, 
+      stat_resp_time, is_ratelmt, rtlmt_id
+      )
+    values (#{svc_code,jdbcType=VARCHAR}, #{svc_name,jdbcType=VARCHAR}, #{sys_code,jdbcType=VARCHAR}, 
+      #{srv_code,jdbcType=VARCHAR}, #{plan_tps,jdbcType=INTEGER}, #{plan_resp_time,jdbcType=INTEGER}, 
+      #{stat_resp_time,jdbcType=INTEGER}, #{is_ratelmt,jdbcType=INTEGER}, #{rtlmt_id,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinalife.simba.model.SmbService">
+    <selectKey keyProperty="svc_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_service
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="svc_code != null">
+        svc_code,
+      </if>
+      <if test="svc_name != null">
+        svc_name,
+      </if>
+      <if test="sys_code != null">
+        sys_code,
+      </if>
+      <if test="srv_code != null">
+        srv_code,
+      </if>
+      <if test="plan_tps != null">
+        plan_tps,
+      </if>
+      <if test="plan_resp_time != null">
+        plan_resp_time,
+      </if>
+      <if test="stat_resp_time != null">
+        stat_resp_time,
+      </if>
+      <if test="is_ratelmt != null">
+        is_ratelmt,
+      </if>
+      <if test="rtlmt_id != null">
+        rtlmt_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="svc_code != null">
+        #{svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="svc_name != null">
+        #{svc_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sys_code != null">
+        #{sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_code != null">
+        #{srv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="plan_tps != null">
+        #{plan_tps,jdbcType=INTEGER},
+      </if>
+      <if test="plan_resp_time != null">
+        #{plan_resp_time,jdbcType=INTEGER},
+      </if>
+      <if test="stat_resp_time != null">
+        #{stat_resp_time,jdbcType=INTEGER},
+      </if>
+      <if test="is_ratelmt != null">
+        #{is_ratelmt,jdbcType=INTEGER},
+      </if>
+      <if test="rtlmt_id != null">
+        #{rtlmt_id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chinalife.simba.model.SmbServiceExample" resultType="java.lang.Long">
+    select count(*) from smb_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update smb_service
+    <set>
+      <if test="record.svc_id != null">
+        svc_id = #{record.svc_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.svc_code != null">
+        svc_code = #{record.svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.svc_name != null">
+        svc_name = #{record.svc_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sys_code != null">
+        sys_code = #{record.sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srv_code != null">
+        srv_code = #{record.srv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plan_tps != null">
+        plan_tps = #{record.plan_tps,jdbcType=INTEGER},
+      </if>
+      <if test="record.plan_resp_time != null">
+        plan_resp_time = #{record.plan_resp_time,jdbcType=INTEGER},
+      </if>
+      <if test="record.stat_resp_time != null">
+        stat_resp_time = #{record.stat_resp_time,jdbcType=INTEGER},
+      </if>
+      <if test="record.is_ratelmt != null">
+        is_ratelmt = #{record.is_ratelmt,jdbcType=INTEGER},
+      </if>
+      <if test="record.rtlmt_id != null">
+        rtlmt_id = #{record.rtlmt_id,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update smb_service
+    set svc_id = #{record.svc_id,jdbcType=INTEGER},
+      svc_code = #{record.svc_code,jdbcType=VARCHAR},
+      svc_name = #{record.svc_name,jdbcType=VARCHAR},
+      sys_code = #{record.sys_code,jdbcType=VARCHAR},
+      srv_code = #{record.srv_code,jdbcType=VARCHAR},
+      plan_tps = #{record.plan_tps,jdbcType=INTEGER},
+      plan_resp_time = #{record.plan_resp_time,jdbcType=INTEGER},
+      stat_resp_time = #{record.stat_resp_time,jdbcType=INTEGER},
+      is_ratelmt = #{record.is_ratelmt,jdbcType=INTEGER},
+      rtlmt_id = #{record.rtlmt_id,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinalife.simba.model.SmbService">
+    update smb_service
+    <set>
+      <if test="svc_code != null">
+        svc_code = #{svc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="svc_name != null">
+        svc_name = #{svc_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sys_code != null">
+        sys_code = #{sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_code != null">
+        srv_code = #{srv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="plan_tps != null">
+        plan_tps = #{plan_tps,jdbcType=INTEGER},
+      </if>
+      <if test="plan_resp_time != null">
+        plan_resp_time = #{plan_resp_time,jdbcType=INTEGER},
+      </if>
+      <if test="stat_resp_time != null">
+        stat_resp_time = #{stat_resp_time,jdbcType=INTEGER},
+      </if>
+      <if test="is_ratelmt != null">
+        is_ratelmt = #{is_ratelmt,jdbcType=INTEGER},
+      </if>
+      <if test="rtlmt_id != null">
+        rtlmt_id = #{rtlmt_id,jdbcType=INTEGER},
+      </if>
+    </set>
+    where svc_id = #{svc_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinalife.simba.model.SmbService">
+    update smb_service
+    set svc_code = #{svc_code,jdbcType=VARCHAR},
+      svc_name = #{svc_name,jdbcType=VARCHAR},
+      sys_code = #{sys_code,jdbcType=VARCHAR},
+      srv_code = #{srv_code,jdbcType=VARCHAR},
+      plan_tps = #{plan_tps,jdbcType=INTEGER},
+      plan_resp_time = #{plan_resp_time,jdbcType=INTEGER},
+      stat_resp_time = #{stat_resp_time,jdbcType=INTEGER},
+      is_ratelmt = #{is_ratelmt,jdbcType=INTEGER},
+      rtlmt_id = #{rtlmt_id,jdbcType=INTEGER}
+    where svc_id = #{svc_id,jdbcType=INTEGER}
+  </update>
+</mapper>

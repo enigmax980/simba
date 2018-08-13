@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinalife.simba.dao.SmbClusterMapper">
+  <resultMap id="BaseResultMap" type="com.chinalife.simba.model.SmbCluster">
+    <id column="clstr_id" jdbcType="INTEGER" property="clstr_id" />
+    <result column="clstr_name" jdbcType="VARCHAR" property="clstr_name" />
+    <result column="sys_code" jdbcType="VARCHAR" property="sys_code" />
+    <result column="srv_code" jdbcType="VARCHAR" property="srv_code" />
+    <result column="srv_port" jdbcType="INTEGER" property="srv_port" />
+    <result column="lb_type" jdbcType="VARCHAR" property="lb_type" />
+    <result column="lb_eqp" jdbcType="VARCHAR" property="lb_eqp" />
+    <result column="hp_check_way" jdbcType="VARCHAR" property="hp_check_way" />
+    <result column="lb_desc" jdbcType="VARCHAR" property="lb_desc" />
+    <result column="clstr_desc" jdbcType="VARCHAR" property="clstr_desc" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    clstr_id, clstr_name, sys_code, srv_code, srv_port, lb_type, lb_eqp, hp_check_way, 
+    lb_desc, clstr_desc
+  </sql>
+  <select id="selectByExample" parameterType="com.chinalife.simba.model.SmbClusterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from smb_cluster
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from smb_cluster
+    where clstr_id = #{clstr_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from smb_cluster
+    where clstr_id = #{clstr_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chinalife.simba.model.SmbClusterExample">
+    delete from smb_cluster
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chinalife.simba.model.SmbCluster">
+    <selectKey keyProperty="clstr_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_cluster (clstr_name, sys_code, srv_code, 
+      srv_port, lb_type, lb_eqp, 
+      hp_check_way, lb_desc, clstr_desc
+      )
+    values (#{clstr_name,jdbcType=VARCHAR}, #{sys_code,jdbcType=VARCHAR}, #{srv_code,jdbcType=VARCHAR}, 
+      #{srv_port,jdbcType=INTEGER}, #{lb_type,jdbcType=VARCHAR}, #{lb_eqp,jdbcType=VARCHAR}, 
+      #{hp_check_way,jdbcType=VARCHAR}, #{lb_desc,jdbcType=VARCHAR}, #{clstr_desc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinalife.simba.model.SmbCluster">
+    <selectKey keyProperty="clstr_id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into smb_cluster
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clstr_name != null">
+        clstr_name,
+      </if>
+      <if test="sys_code != null">
+        sys_code,
+      </if>
+      <if test="srv_code != null">
+        srv_code,
+      </if>
+      <if test="srv_port != null">
+        srv_port,
+      </if>
+      <if test="lb_type != null">
+        lb_type,
+      </if>
+      <if test="lb_eqp != null">
+        lb_eqp,
+      </if>
+      <if test="hp_check_way != null">
+        hp_check_way,
+      </if>
+      <if test="lb_desc != null">
+        lb_desc,
+      </if>
+      <if test="clstr_desc != null">
+        clstr_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clstr_name != null">
+        #{clstr_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sys_code != null">
+        #{sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_code != null">
+        #{srv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_port != null">
+        #{srv_port,jdbcType=INTEGER},
+      </if>
+      <if test="lb_type != null">
+        #{lb_type,jdbcType=VARCHAR},
+      </if>
+      <if test="lb_eqp != null">
+        #{lb_eqp,jdbcType=VARCHAR},
+      </if>
+      <if test="hp_check_way != null">
+        #{hp_check_way,jdbcType=VARCHAR},
+      </if>
+      <if test="lb_desc != null">
+        #{lb_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="clstr_desc != null">
+        #{clstr_desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chinalife.simba.model.SmbClusterExample" resultType="java.lang.Long">
+    select count(*) from smb_cluster
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update smb_cluster
+    <set>
+      <if test="record.clstr_id != null">
+        clstr_id = #{record.clstr_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clstr_name != null">
+        clstr_name = #{record.clstr_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sys_code != null">
+        sys_code = #{record.sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srv_code != null">
+        srv_code = #{record.srv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srv_port != null">
+        srv_port = #{record.srv_port,jdbcType=INTEGER},
+      </if>
+      <if test="record.lb_type != null">
+        lb_type = #{record.lb_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lb_eqp != null">
+        lb_eqp = #{record.lb_eqp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hp_check_way != null">
+        hp_check_way = #{record.hp_check_way,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lb_desc != null">
+        lb_desc = #{record.lb_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clstr_desc != null">
+        clstr_desc = #{record.clstr_desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update smb_cluster
+    set clstr_id = #{record.clstr_id,jdbcType=INTEGER},
+      clstr_name = #{record.clstr_name,jdbcType=VARCHAR},
+      sys_code = #{record.sys_code,jdbcType=VARCHAR},
+      srv_code = #{record.srv_code,jdbcType=VARCHAR},
+      srv_port = #{record.srv_port,jdbcType=INTEGER},
+      lb_type = #{record.lb_type,jdbcType=VARCHAR},
+      lb_eqp = #{record.lb_eqp,jdbcType=VARCHAR},
+      hp_check_way = #{record.hp_check_way,jdbcType=VARCHAR},
+      lb_desc = #{record.lb_desc,jdbcType=VARCHAR},
+      clstr_desc = #{record.clstr_desc,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinalife.simba.model.SmbCluster">
+    update smb_cluster
+    <set>
+      <if test="clstr_name != null">
+        clstr_name = #{clstr_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sys_code != null">
+        sys_code = #{sys_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_code != null">
+        srv_code = #{srv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="srv_port != null">
+        srv_port = #{srv_port,jdbcType=INTEGER},
+      </if>
+      <if test="lb_type != null">
+        lb_type = #{lb_type,jdbcType=VARCHAR},
+      </if>
+      <if test="lb_eqp != null">
+        lb_eqp = #{lb_eqp,jdbcType=VARCHAR},
+      </if>
+      <if test="hp_check_way != null">
+        hp_check_way = #{hp_check_way,jdbcType=VARCHAR},
+      </if>
+      <if test="lb_desc != null">
+        lb_desc = #{lb_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="clstr_desc != null">
+        clstr_desc = #{clstr_desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where clstr_id = #{clstr_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinalife.simba.model.SmbCluster">
+    update smb_cluster
+    set clstr_name = #{clstr_name,jdbcType=VARCHAR},
+      sys_code = #{sys_code,jdbcType=VARCHAR},
+      srv_code = #{srv_code,jdbcType=VARCHAR},
+      srv_port = #{srv_port,jdbcType=INTEGER},
+      lb_type = #{lb_type,jdbcType=VARCHAR},
+      lb_eqp = #{lb_eqp,jdbcType=VARCHAR},
+      hp_check_way = #{hp_check_way,jdbcType=VARCHAR},
+      lb_desc = #{lb_desc,jdbcType=VARCHAR},
+      clstr_desc = #{clstr_desc,jdbcType=VARCHAR}
+    where clstr_id = #{clstr_id,jdbcType=INTEGER}
+  </update>
+</mapper>
