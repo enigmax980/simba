@@ -1,7 +1,8 @@
-package com.chinalife.simba.mapper;
-import java.util.List;
-import com.chinalife.simba.bean.SimbaSystem;
+package com.chinalife.simba.dao;
+import com.chinalife.simba.model.SimbaSystem;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface SimbaSystemMapper {
