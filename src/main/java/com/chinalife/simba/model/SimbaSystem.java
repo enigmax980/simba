@@ -1,4 +1,4 @@
-package com.chinalife.simba.bean;
+package com.chinalife.simba.model;
 
 
 public class SimbaSystem {
