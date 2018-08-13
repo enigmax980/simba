@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chinalife.simba.bean.SimbaSystem;
-import com.chinalife.simba.mapper.SimbaSystemMapper;
+import com.chinalife.simba.model.SimbaSystem;
+import com.chinalife.simba.dao.SimbaSystemMapper;
 
 
 @Service
@@ -19,7 +19,7 @@ public class SimbaSystemService {
     public List<SimbaSystem> getMessage(){
         List<SimbaSystem> list = new ArrayList<SimbaSystem>();
         list.add(mapper.selectByPrimaryKey("xtt"));
-        //list = mapper.selectAll();
+        //list = dao.selectAll();
         return list;
     }
 
