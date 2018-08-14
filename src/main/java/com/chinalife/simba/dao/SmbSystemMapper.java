@@ -4,18 +4,16 @@ import com.chinalife.simba.model.SmbSystem;
 import com.chinalife.simba.model.SmbSystemExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 @Mapper
 public interface SmbSystemMapper {
     long countByExample(SmbSystemExample example);
 
     int deleteByExample(SmbSystemExample example);
 
-    int deleteByPrimaryKey(Integer sys_id);
+    int deleteByPrimaryKey(Integer sysId);
 
     int insert(SmbSystem record);
 
@@ -25,7 +23,7 @@ public interface SmbSystemMapper {
 
     List<SmbSystem> selectAll();
 
-    SmbSystem selectByPrimaryKey(Integer sys_id);
+    SmbSystem selectByPrimaryKey(Integer sysId);
 
     int updateByExampleSelective(@Param("record") SmbSystem record, @Param("example") SmbSystemExample example);
 
