@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinalife.simba.dao.SmbSystemMapper">
   <resultMap id="BaseResultMap" type="com.chinalife.simba.model.SmbSystem">
-    <id column="sys_id" jdbcType="INTEGER" property="sys_id" />
-    <result column="sys_code" jdbcType="VARCHAR" property="sys_code" />
-    <result column="sys_name" jdbcType="VARCHAR" property="sys_name" />
+    <id column="sys_id" jdbcType="INTEGER" property="sysId" />
+    <result column="sys_code" jdbcType="VARCHAR" property="sysCode" />
+    <result column="sys_name" jdbcType="VARCHAR" property="sysName" />
     <result column="principal" jdbcType="VARCHAR" property="principal" />
     <result column="architect" jdbcType="VARCHAR" property="architect" />
     <result column="director" jdbcType="VARCHAR" property="director" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
-    <result column="sys_desc" jdbcType="VARCHAR" property="sys_desc" />
+    <result column="busi_dept" jdbcType="VARCHAR" property="busiDept" />
+    <result column="dev_dept" jdbcType="VARCHAR" property="devDept" />
+    <result column="sys_desc" jdbcType="VARCHAR" property="sysDesc" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    sys_id, sys_code, sys_name, principal, architect, director, department, sys_desc
+    sys_id, sys_code, sys_name, principal, architect, director, busi_dept, dev_dept, 
+    sys_desc
   </sql>
   <select id="selectByExample" parameterType="com.chinalife.simba.model.SmbSystemExample" resultMap="BaseResultMap">
     select
@@ -104,11 +106,11 @@
     select 
     <include refid="Base_Column_List" />
     from smb_system
-    where sys_id = #{sys_id,jdbcType=INTEGER}
+    where sys_id = #{sysId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from smb_system
-    where sys_id = #{sys_id,jdbcType=INTEGER}
+    where sys_id = #{sysId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.chinalife.simba.model.SmbSystemExample">
     delete from smb_system
@@ -117,26 +119,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.chinalife.simba.model.SmbSystem">
-    <selectKey keyProperty="sys_id" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="sysId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into smb_system (sys_code, sys_name, principal, 
-      architect, director, department, 
-      sys_desc)
-    values (#{sys_code,jdbcType=VARCHAR}, #{sys_name,jdbcType=VARCHAR}, #{principal,jdbcType=VARCHAR}, 
-      #{architect,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
-      #{sys_desc,jdbcType=VARCHAR})
+      architect, director, busi_dept, 
+      dev_dept, sys_desc)
+    values (#{sysCode,jdbcType=VARCHAR}, #{sysName,jdbcType=VARCHAR}, #{principal,jdbcType=VARCHAR}, 
+      #{architect,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{busiDept,jdbcType=VARCHAR}, 
+      #{devDept,jdbcType=VARCHAR}, #{sysDesc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.chinalife.simba.model.SmbSystem">
-    <selectKey keyProperty="sys_id" order="AFTER" resultType="java.lang.Integer">
+    <selectKey keyProperty="sysId" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into smb_system
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="sys_code != null">
+      <if test="sysCode != null">
         sys_code,
       </if>
-      <if test="sys_name != null">
+      <if test="sysName != null">
         sys_name,
       </if>
       <if test="principal != null">
@@ -148,19 +150,22 @@
       <if test="director != null">
         director,
       </if>
-      <if test="department != null">
-        department,
+      <if test="busiDept != null">
+        busi_dept,
       </if>
-      <if test="sys_desc != null">
+      <if test="devDept != null">
+        dev_dept,
+      </if>
+      <if test="sysDesc != null">
         sys_desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="sys_code != null">
-        #{sys_code,jdbcType=VARCHAR},
+      <if test="sysCode != null">
+        #{sysCode,jdbcType=VARCHAR},
       </if>
-      <if test="sys_name != null">
-        #{sys_name,jdbcType=VARCHAR},
+      <if test="sysName != null">
+        #{sysName,jdbcType=VARCHAR},
       </if>
       <if test="principal != null">
         #{principal,jdbcType=VARCHAR},
@@ -171,11 +176,14 @@
       <if test="director != null">
         #{director,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="busiDept != null">
+        #{busiDept,jdbcType=VARCHAR},
       </if>
-      <if test="sys_desc != null">
-        #{sys_desc,jdbcType=VARCHAR},
+      <if test="devDept != null">
+        #{devDept,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDesc != null">
+        #{sysDesc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,14 +196,14 @@
   <update id="updateByExampleSelective" parameterType="map">
     update smb_system
     <set>
-      <if test="record.sys_id != null">
-        sys_id = #{record.sys_id,jdbcType=INTEGER},
+      <if test="record.sysId != null">
+        sys_id = #{record.sysId,jdbcType=INTEGER},
       </if>
-      <if test="record.sys_code != null">
-        sys_code = #{record.sys_code,jdbcType=VARCHAR},
+      <if test="record.sysCode != null">
+        sys_code = #{record.sysCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.sys_name != null">
-        sys_name = #{record.sys_name,jdbcType=VARCHAR},
+      <if test="record.sysName != null">
+        sys_name = #{record.sysName,jdbcType=VARCHAR},
       </if>
       <if test="record.principal != null">
         principal = #{record.principal,jdbcType=VARCHAR},
@@ -206,11 +214,14 @@
       <if test="record.director != null">
         director = #{record.director,jdbcType=VARCHAR},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.busiDept != null">
+        busi_dept = #{record.busiDept,jdbcType=VARCHAR},
       </if>
-      <if test="record.sys_desc != null">
-        sys_desc = #{record.sys_desc,jdbcType=VARCHAR},
+      <if test="record.devDept != null">
+        dev_dept = #{record.devDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysDesc != null">
+        sys_desc = #{record.sysDesc,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -219,14 +230,15 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update smb_system
-    set sys_id = #{record.sys_id,jdbcType=INTEGER},
-      sys_code = #{record.sys_code,jdbcType=VARCHAR},
-      sys_name = #{record.sys_name,jdbcType=VARCHAR},
+    set sys_id = #{record.sysId,jdbcType=INTEGER},
+      sys_code = #{record.sysCode,jdbcType=VARCHAR},
+      sys_name = #{record.sysName,jdbcType=VARCHAR},
       principal = #{record.principal,jdbcType=VARCHAR},
       architect = #{record.architect,jdbcType=VARCHAR},
       director = #{record.director,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=VARCHAR},
-      sys_desc = #{record.sys_desc,jdbcType=VARCHAR}
+      busi_dept = #{record.busiDept,jdbcType=VARCHAR},
+      dev_dept = #{record.devDept,jdbcType=VARCHAR},
+      sys_desc = #{record.sysDesc,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -234,11 +246,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.chinalife.simba.model.SmbSystem">
     update smb_system
     <set>
-      <if test="sys_code != null">
-        sys_code = #{sys_code,jdbcType=VARCHAR},
+      <if test="sysCode != null">
+        sys_code = #{sysCode,jdbcType=VARCHAR},
       </if>
-      <if test="sys_name != null">
-        sys_name = #{sys_name,jdbcType=VARCHAR},
+      <if test="sysName != null">
+        sys_name = #{sysName,jdbcType=VARCHAR},
       </if>
       <if test="principal != null">
         principal = #{principal,jdbcType=VARCHAR},
@@ -249,24 +261,28 @@
       <if test="director != null">
         director = #{director,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="busiDept != null">
+        busi_dept = #{busiDept,jdbcType=VARCHAR},
       </if>
-      <if test="sys_desc != null">
-        sys_desc = #{sys_desc,jdbcType=VARCHAR},
+      <if test="devDept != null">
+        dev_dept = #{devDept,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDesc != null">
+        sys_desc = #{sysDesc,jdbcType=VARCHAR},
       </if>
     </set>
-    where sys_id = #{sys_id,jdbcType=INTEGER}
+    where sys_id = #{sysId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.chinalife.simba.model.SmbSystem">
     update smb_system
-    set sys_code = #{sys_code,jdbcType=VARCHAR},
-      sys_name = #{sys_name,jdbcType=VARCHAR},
+    set sys_code = #{sysCode,jdbcType=VARCHAR},
+      sys_name = #{sysName,jdbcType=VARCHAR},
       principal = #{principal,jdbcType=VARCHAR},
       architect = #{architect,jdbcType=VARCHAR},
       director = #{director,jdbcType=VARCHAR},
-      department = #{department,jdbcType=VARCHAR},
-      sys_desc = #{sys_desc,jdbcType=VARCHAR}
-    where sys_id = #{sys_id,jdbcType=INTEGER}
+      busi_dept = #{busiDept,jdbcType=VARCHAR},
+      dev_dept = #{devDept,jdbcType=VARCHAR},
+      sys_desc = #{sysDesc,jdbcType=VARCHAR}
+    where sys_id = #{sysId,jdbcType=INTEGER}
   </update>
 </mapper>
