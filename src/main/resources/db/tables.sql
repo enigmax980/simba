@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS smb_server;
  srv_id int primary key auto_increment,     #应用服务器配置id
  srv_code   varchar(20),                    #应用服务器名
  srv_name   varchar(60),                    #应用服务器中文名
- sys_code    varchar(12),                   #系统id，一个应用服务器逻辑上属于一个系统
+ sys_code    varchar(12),                   #系统id 一个应用服务器逻辑上属于一个系统
  srv_desc    varchar(100)                   #应用服务器描述
  ) character set = utf8;
 
@@ -60,12 +60,12 @@ DROP TABLE IF EXISTS smb_svc_invoke;
  svc_invk_id int primary key auto_increment, #服务调用关系id
  src_sys_code   varchar(12) not null,       #源系统
  src_svc_code   varchar(30) not null,       #源服务,或客户端
- src_pos        varchar(2) not null,        #调用方身份　client service
+ src_pos        varchar(2) not null,        #调用方身份 client service
  is_fuse        int default 0,              #是否熔断
  fuse_id        int,                        #熔断器id
  des_sys_code   varchar(12) not null,       #目标系统
  des_svc_code   varchar(30) not null,       #目标服务
- time_out       int,                        #服务调用超时时间　ms
+ time_out       int,                        #服务调用超时时间 ms
  call_percent   int  default 100            #调用频率百分比
  ) character set = utf8;
 
@@ -110,7 +110,7 @@ DROP TABLE IF EXISTS smb_node;
  create table smb_node(
  node_id int primary key auto_increment, #应用节点id
  srv_code    varchar(20) not null,    #应用服务器,逻辑上一个节点是一个应用服务器的实例
- mach_id     int not null,            #服务器id，物理上一个应用节点上属于一个物理服务器
+ mach_id     int not null,            #服务器id, 物理上一个应用节点上属于一个物理服务器
  srv_port   int not null,             #服务端口号
  is_clstr    int default 0,           #是否集群部署
  clstr_id    int,                     #集群id
@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS smb_cluster;
  srv_code    varchar(20) not null,        #应用服务类型
  srv_port    int,                         #应用端口号
  lb_type     varchar(10) not null,        #负载均衡设备类型 dns hardware software 等
- lb_eqp      varchar(20)not null,         #负载均衡设备名 F5,　A10, radware, nginx, lvs 等
+ lb_eqp      varchar(20)not null,         #负载均衡设备名 F5, A10, radware, nginx, lvs 等
  hp_check_way    varchar(20) not null,    #健康度检测方式 ping tcp http heartbeat
  lb_desc         varchar(100),            #康检查与故障隔离策略描述
  clstr_desc   varchar(100)                #集群描述
