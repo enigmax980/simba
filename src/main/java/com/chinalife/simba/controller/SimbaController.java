@@ -32,8 +32,8 @@ public class SimbaController {
 
         List<SmbSystem> list = service.getAllSystem();
         int num = list.size();
-        if(null!=list && num>8){
-            for (int i = 0; i < num-8; i++) {
+        if(null!=list && num>5){
+            for (int i = 0; i < num-5; i++) {
                 list.remove(0);
             }
         }
