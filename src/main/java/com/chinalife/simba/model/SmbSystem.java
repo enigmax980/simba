@@ -2,18 +2,15 @@ package com.chinalife.simba.model;
 
 import java.io.Serializable;
 
-
 /**
  * @author 
  */
-
 public class SmbSystem implements Serializable {
+    private Integer sysId;
 
-    private Integer sys_id;
+    private String sysCode;
 
-    private String sys_code;
-
-    private String sys_name;
+    private String sysName;
 
     private String principal;
 
@@ -21,34 +18,36 @@ public class SmbSystem implements Serializable {
 
     private String director;
 
-    private String department;
+    private String busiDept;
 
-    private String sys_desc;
+    private String devDept;
+
+    private String sysDesc;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getSys_id() {
-        return sys_id;
+    public Integer getSysId() {
+        return sysId;
     }
 
-    public void setSys_id(Integer sys_id) {
-        this.sys_id = sys_id;
+    public void setSysId(Integer sysId) {
+        this.sysId = sysId;
     }
 
-    public String getSys_code() {
-        return sys_code;
+    public String getSysCode() {
+        return sysCode;
     }
 
-    public void setSys_code(String sys_code) {
-        this.sys_code = sys_code;
+    public void setSysCode(String sysCode) {
+        this.sysCode = sysCode;
     }
 
-    public String getSys_name() {
-        return sys_name;
+    public String getSysName() {
+        return sysName;
     }
 
-    public void setSys_name(String sys_name) {
-        this.sys_name = sys_name;
+    public void setSysName(String sysName) {
+        this.sysName = sysName;
     }
 
     public String getPrincipal() {
@@ -75,20 +74,28 @@ public class SmbSystem implements Serializable {
         this.director = director;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getBusiDept() {
+        return busiDept;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setBusiDept(String busiDept) {
+        this.busiDept = busiDept;
     }
 
-    public String getSys_desc() {
-        return sys_desc;
+    public String getDevDept() {
+        return devDept;
     }
 
-    public void setSys_desc(String sys_desc) {
-        this.sys_desc = sys_desc;
+    public void setDevDept(String devDept) {
+        this.devDept = devDept;
+    }
+
+    public String getSysDesc() {
+        return sysDesc;
+    }
+
+    public void setSysDesc(String sysDesc) {
+        this.sysDesc = sysDesc;
     }
 
     @Override
@@ -103,28 +110,30 @@ public class SmbSystem implements Serializable {
             return false;
         }
         SmbSystem other = (SmbSystem) that;
-        return (this.getSys_id() == null ? other.getSys_id() == null : this.getSys_id().equals(other.getSys_id()))
-            && (this.getSys_code() == null ? other.getSys_code() == null : this.getSys_code().equals(other.getSys_code()))
-            && (this.getSys_name() == null ? other.getSys_name() == null : this.getSys_name().equals(other.getSys_name()))
+        return (this.getSysId() == null ? other.getSysId() == null : this.getSysId().equals(other.getSysId()))
+            && (this.getSysCode() == null ? other.getSysCode() == null : this.getSysCode().equals(other.getSysCode()))
+            && (this.getSysName() == null ? other.getSysName() == null : this.getSysName().equals(other.getSysName()))
             && (this.getPrincipal() == null ? other.getPrincipal() == null : this.getPrincipal().equals(other.getPrincipal()))
             && (this.getArchitect() == null ? other.getArchitect() == null : this.getArchitect().equals(other.getArchitect()))
             && (this.getDirector() == null ? other.getDirector() == null : this.getDirector().equals(other.getDirector()))
-            && (this.getDepartment() == null ? other.getDepartment() == null : this.getDepartment().equals(other.getDepartment()))
-            && (this.getSys_desc() == null ? other.getSys_desc() == null : this.getSys_desc().equals(other.getSys_desc()));
+            && (this.getBusiDept() == null ? other.getBusiDept() == null : this.getBusiDept().equals(other.getBusiDept()))
+            && (this.getDevDept() == null ? other.getDevDept() == null : this.getDevDept().equals(other.getDevDept()))
+            && (this.getSysDesc() == null ? other.getSysDesc() == null : this.getSysDesc().equals(other.getSysDesc()));
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getSys_id() == null) ? 0 : getSys_id().hashCode());
-        result = prime * result + ((getSys_code() == null) ? 0 : getSys_code().hashCode());
-        result = prime * result + ((getSys_name() == null) ? 0 : getSys_name().hashCode());
+        result = prime * result + ((getSysId() == null) ? 0 : getSysId().hashCode());
+        result = prime * result + ((getSysCode() == null) ? 0 : getSysCode().hashCode());
+        result = prime * result + ((getSysName() == null) ? 0 : getSysName().hashCode());
         result = prime * result + ((getPrincipal() == null) ? 0 : getPrincipal().hashCode());
         result = prime * result + ((getArchitect() == null) ? 0 : getArchitect().hashCode());
         result = prime * result + ((getDirector() == null) ? 0 : getDirector().hashCode());
-        result = prime * result + ((getDepartment() == null) ? 0 : getDepartment().hashCode());
-        result = prime * result + ((getSys_desc() == null) ? 0 : getSys_desc().hashCode());
+        result = prime * result + ((getBusiDept() == null) ? 0 : getBusiDept().hashCode());
+        result = prime * result + ((getDevDept() == null) ? 0 : getDevDept().hashCode());
+        result = prime * result + ((getSysDesc() == null) ? 0 : getSysDesc().hashCode());
         return result;
     }
 
@@ -134,14 +143,15 @@ public class SmbSystem implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", sys_id=").append(sys_id);
-        sb.append(", sys_code=").append(sys_code);
-        sb.append(", sys_name=").append(sys_name);
+        sb.append(", sysId=").append(sysId);
+        sb.append(", sysCode=").append(sysCode);
+        sb.append(", sysName=").append(sysName);
         sb.append(", principal=").append(principal);
         sb.append(", architect=").append(architect);
         sb.append(", director=").append(director);
-        sb.append(", department=").append(department);
-        sb.append(", sys_desc=").append(sys_desc);
+        sb.append(", busiDept=").append(busiDept);
+        sb.append(", devDept=").append(devDept);
+        sb.append(", sysDesc=").append(sysDesc);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

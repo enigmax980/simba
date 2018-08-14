@@ -3,7 +3,6 @@ package com.chinalife.simba.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class SmbSystemExample {
     protected String orderByClause;
 
@@ -125,203 +124,203 @@ public class SmbSystemExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andSys_idIsNull() {
+        public Criteria andSysIdIsNull() {
             addCriterion("sys_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idIsNotNull() {
+        public Criteria andSysIdIsNotNull() {
             addCriterion("sys_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idEqualTo(Integer value) {
-            addCriterion("sys_id =", value, "sys_id");
+        public Criteria andSysIdEqualTo(Integer value) {
+            addCriterion("sys_id =", value, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idNotEqualTo(Integer value) {
-            addCriterion("sys_id <>", value, "sys_id");
+        public Criteria andSysIdNotEqualTo(Integer value) {
+            addCriterion("sys_id <>", value, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idGreaterThan(Integer value) {
-            addCriterion("sys_id >", value, "sys_id");
+        public Criteria andSysIdGreaterThan(Integer value) {
+            addCriterion("sys_id >", value, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idGreaterThanOrEqualTo(Integer value) {
-            addCriterion("sys_id >=", value, "sys_id");
+        public Criteria andSysIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sys_id >=", value, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idLessThan(Integer value) {
-            addCriterion("sys_id <", value, "sys_id");
+        public Criteria andSysIdLessThan(Integer value) {
+            addCriterion("sys_id <", value, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idLessThanOrEqualTo(Integer value) {
-            addCriterion("sys_id <=", value, "sys_id");
+        public Criteria andSysIdLessThanOrEqualTo(Integer value) {
+            addCriterion("sys_id <=", value, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idIn(List<Integer> values) {
-            addCriterion("sys_id in", values, "sys_id");
+        public Criteria andSysIdIn(List<Integer> values) {
+            addCriterion("sys_id in", values, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idNotIn(List<Integer> values) {
-            addCriterion("sys_id not in", values, "sys_id");
+        public Criteria andSysIdNotIn(List<Integer> values) {
+            addCriterion("sys_id not in", values, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idBetween(Integer value1, Integer value2) {
-            addCriterion("sys_id between", value1, value2, "sys_id");
+        public Criteria andSysIdBetween(Integer value1, Integer value2) {
+            addCriterion("sys_id between", value1, value2, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_idNotBetween(Integer value1, Integer value2) {
-            addCriterion("sys_id not between", value1, value2, "sys_id");
+        public Criteria andSysIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("sys_id not between", value1, value2, "sysId");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeIsNull() {
+        public Criteria andSysCodeIsNull() {
             addCriterion("sys_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeIsNotNull() {
+        public Criteria andSysCodeIsNotNull() {
             addCriterion("sys_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeEqualTo(String value) {
-            addCriterion("sys_code =", value, "sys_code");
+        public Criteria andSysCodeEqualTo(String value) {
+            addCriterion("sys_code =", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeNotEqualTo(String value) {
-            addCriterion("sys_code <>", value, "sys_code");
+        public Criteria andSysCodeNotEqualTo(String value) {
+            addCriterion("sys_code <>", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeGreaterThan(String value) {
-            addCriterion("sys_code >", value, "sys_code");
+        public Criteria andSysCodeGreaterThan(String value) {
+            addCriterion("sys_code >", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeGreaterThanOrEqualTo(String value) {
-            addCriterion("sys_code >=", value, "sys_code");
+        public Criteria andSysCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("sys_code >=", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeLessThan(String value) {
-            addCriterion("sys_code <", value, "sys_code");
+        public Criteria andSysCodeLessThan(String value) {
+            addCriterion("sys_code <", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeLessThanOrEqualTo(String value) {
-            addCriterion("sys_code <=", value, "sys_code");
+        public Criteria andSysCodeLessThanOrEqualTo(String value) {
+            addCriterion("sys_code <=", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeLike(String value) {
-            addCriterion("sys_code like", value, "sys_code");
+        public Criteria andSysCodeLike(String value) {
+            addCriterion("sys_code like", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeNotLike(String value) {
-            addCriterion("sys_code not like", value, "sys_code");
+        public Criteria andSysCodeNotLike(String value) {
+            addCriterion("sys_code not like", value, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeIn(List<String> values) {
-            addCriterion("sys_code in", values, "sys_code");
+        public Criteria andSysCodeIn(List<String> values) {
+            addCriterion("sys_code in", values, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeNotIn(List<String> values) {
-            addCriterion("sys_code not in", values, "sys_code");
+        public Criteria andSysCodeNotIn(List<String> values) {
+            addCriterion("sys_code not in", values, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeBetween(String value1, String value2) {
-            addCriterion("sys_code between", value1, value2, "sys_code");
+        public Criteria andSysCodeBetween(String value1, String value2) {
+            addCriterion("sys_code between", value1, value2, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_codeNotBetween(String value1, String value2) {
-            addCriterion("sys_code not between", value1, value2, "sys_code");
+        public Criteria andSysCodeNotBetween(String value1, String value2) {
+            addCriterion("sys_code not between", value1, value2, "sysCode");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameIsNull() {
+        public Criteria andSysNameIsNull() {
             addCriterion("sys_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameIsNotNull() {
+        public Criteria andSysNameIsNotNull() {
             addCriterion("sys_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameEqualTo(String value) {
-            addCriterion("sys_name =", value, "sys_name");
+        public Criteria andSysNameEqualTo(String value) {
+            addCriterion("sys_name =", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameNotEqualTo(String value) {
-            addCriterion("sys_name <>", value, "sys_name");
+        public Criteria andSysNameNotEqualTo(String value) {
+            addCriterion("sys_name <>", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameGreaterThan(String value) {
-            addCriterion("sys_name >", value, "sys_name");
+        public Criteria andSysNameGreaterThan(String value) {
+            addCriterion("sys_name >", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameGreaterThanOrEqualTo(String value) {
-            addCriterion("sys_name >=", value, "sys_name");
+        public Criteria andSysNameGreaterThanOrEqualTo(String value) {
+            addCriterion("sys_name >=", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameLessThan(String value) {
-            addCriterion("sys_name <", value, "sys_name");
+        public Criteria andSysNameLessThan(String value) {
+            addCriterion("sys_name <", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameLessThanOrEqualTo(String value) {
-            addCriterion("sys_name <=", value, "sys_name");
+        public Criteria andSysNameLessThanOrEqualTo(String value) {
+            addCriterion("sys_name <=", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameLike(String value) {
-            addCriterion("sys_name like", value, "sys_name");
+        public Criteria andSysNameLike(String value) {
+            addCriterion("sys_name like", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameNotLike(String value) {
-            addCriterion("sys_name not like", value, "sys_name");
+        public Criteria andSysNameNotLike(String value) {
+            addCriterion("sys_name not like", value, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameIn(List<String> values) {
-            addCriterion("sys_name in", values, "sys_name");
+        public Criteria andSysNameIn(List<String> values) {
+            addCriterion("sys_name in", values, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameNotIn(List<String> values) {
-            addCriterion("sys_name not in", values, "sys_name");
+        public Criteria andSysNameNotIn(List<String> values) {
+            addCriterion("sys_name not in", values, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameBetween(String value1, String value2) {
-            addCriterion("sys_name between", value1, value2, "sys_name");
+        public Criteria andSysNameBetween(String value1, String value2) {
+            addCriterion("sys_name between", value1, value2, "sysName");
             return (Criteria) this;
         }
 
-        public Criteria andSys_nameNotBetween(String value1, String value2) {
-            addCriterion("sys_name not between", value1, value2, "sys_name");
+        public Criteria andSysNameNotBetween(String value1, String value2) {
+            addCriterion("sys_name not between", value1, value2, "sysName");
             return (Criteria) this;
         }
 
@@ -535,143 +534,213 @@ public class SmbSystemExample {
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNull() {
-            addCriterion("department is null");
+        public Criteria andBusiDeptIsNull() {
+            addCriterion("busi_dept is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNotNull() {
-            addCriterion("department is not null");
+        public Criteria andBusiDeptIsNotNull() {
+            addCriterion("busi_dept is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentEqualTo(String value) {
-            addCriterion("department =", value, "department");
+        public Criteria andBusiDeptEqualTo(String value) {
+            addCriterion("busi_dept =", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotEqualTo(String value) {
-            addCriterion("department <>", value, "department");
+        public Criteria andBusiDeptNotEqualTo(String value) {
+            addCriterion("busi_dept <>", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThan(String value) {
-            addCriterion("department >", value, "department");
+        public Criteria andBusiDeptGreaterThan(String value) {
+            addCriterion("busi_dept >", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThanOrEqualTo(String value) {
-            addCriterion("department >=", value, "department");
+        public Criteria andBusiDeptGreaterThanOrEqualTo(String value) {
+            addCriterion("busi_dept >=", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThan(String value) {
-            addCriterion("department <", value, "department");
+        public Criteria andBusiDeptLessThan(String value) {
+            addCriterion("busi_dept <", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThanOrEqualTo(String value) {
-            addCriterion("department <=", value, "department");
+        public Criteria andBusiDeptLessThanOrEqualTo(String value) {
+            addCriterion("busi_dept <=", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLike(String value) {
-            addCriterion("department like", value, "department");
+        public Criteria andBusiDeptLike(String value) {
+            addCriterion("busi_dept like", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotLike(String value) {
-            addCriterion("department not like", value, "department");
+        public Criteria andBusiDeptNotLike(String value) {
+            addCriterion("busi_dept not like", value, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIn(List<String> values) {
-            addCriterion("department in", values, "department");
+        public Criteria andBusiDeptIn(List<String> values) {
+            addCriterion("busi_dept in", values, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotIn(List<String> values) {
-            addCriterion("department not in", values, "department");
+        public Criteria andBusiDeptNotIn(List<String> values) {
+            addCriterion("busi_dept not in", values, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentBetween(String value1, String value2) {
-            addCriterion("department between", value1, value2, "department");
+        public Criteria andBusiDeptBetween(String value1, String value2) {
+            addCriterion("busi_dept between", value1, value2, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotBetween(String value1, String value2) {
-            addCriterion("department not between", value1, value2, "department");
+        public Criteria andBusiDeptNotBetween(String value1, String value2) {
+            addCriterion("busi_dept not between", value1, value2, "busiDept");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descIsNull() {
+        public Criteria andDevDeptIsNull() {
+            addCriterion("dev_dept is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptIsNotNull() {
+            addCriterion("dev_dept is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptEqualTo(String value) {
+            addCriterion("dev_dept =", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptNotEqualTo(String value) {
+            addCriterion("dev_dept <>", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptGreaterThan(String value) {
+            addCriterion("dev_dept >", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptGreaterThanOrEqualTo(String value) {
+            addCriterion("dev_dept >=", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptLessThan(String value) {
+            addCriterion("dev_dept <", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptLessThanOrEqualTo(String value) {
+            addCriterion("dev_dept <=", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptLike(String value) {
+            addCriterion("dev_dept like", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptNotLike(String value) {
+            addCriterion("dev_dept not like", value, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptIn(List<String> values) {
+            addCriterion("dev_dept in", values, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptNotIn(List<String> values) {
+            addCriterion("dev_dept not in", values, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptBetween(String value1, String value2) {
+            addCriterion("dev_dept between", value1, value2, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andDevDeptNotBetween(String value1, String value2) {
+            addCriterion("dev_dept not between", value1, value2, "devDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysDescIsNull() {
             addCriterion("sys_desc is null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descIsNotNull() {
+        public Criteria andSysDescIsNotNull() {
             addCriterion("sys_desc is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descEqualTo(String value) {
-            addCriterion("sys_desc =", value, "sys_desc");
+        public Criteria andSysDescEqualTo(String value) {
+            addCriterion("sys_desc =", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descNotEqualTo(String value) {
-            addCriterion("sys_desc <>", value, "sys_desc");
+        public Criteria andSysDescNotEqualTo(String value) {
+            addCriterion("sys_desc <>", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descGreaterThan(String value) {
-            addCriterion("sys_desc >", value, "sys_desc");
+        public Criteria andSysDescGreaterThan(String value) {
+            addCriterion("sys_desc >", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descGreaterThanOrEqualTo(String value) {
-            addCriterion("sys_desc >=", value, "sys_desc");
+        public Criteria andSysDescGreaterThanOrEqualTo(String value) {
+            addCriterion("sys_desc >=", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descLessThan(String value) {
-            addCriterion("sys_desc <", value, "sys_desc");
+        public Criteria andSysDescLessThan(String value) {
+            addCriterion("sys_desc <", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descLessThanOrEqualTo(String value) {
-            addCriterion("sys_desc <=", value, "sys_desc");
+        public Criteria andSysDescLessThanOrEqualTo(String value) {
+            addCriterion("sys_desc <=", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descLike(String value) {
-            addCriterion("sys_desc like", value, "sys_desc");
+        public Criteria andSysDescLike(String value) {
+            addCriterion("sys_desc like", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descNotLike(String value) {
-            addCriterion("sys_desc not like", value, "sys_desc");
+        public Criteria andSysDescNotLike(String value) {
+            addCriterion("sys_desc not like", value, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descIn(List<String> values) {
-            addCriterion("sys_desc in", values, "sys_desc");
+        public Criteria andSysDescIn(List<String> values) {
+            addCriterion("sys_desc in", values, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descNotIn(List<String> values) {
-            addCriterion("sys_desc not in", values, "sys_desc");
+        public Criteria andSysDescNotIn(List<String> values) {
+            addCriterion("sys_desc not in", values, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descBetween(String value1, String value2) {
-            addCriterion("sys_desc between", value1, value2, "sys_desc");
+        public Criteria andSysDescBetween(String value1, String value2) {
+            addCriterion("sys_desc between", value1, value2, "sysDesc");
             return (Criteria) this;
         }
 
-        public Criteria andSys_descNotBetween(String value1, String value2) {
-            addCriterion("sys_desc not between", value1, value2, "sys_desc");
+        public Criteria andSysDescNotBetween(String value1, String value2) {
+            addCriterion("sys_desc not between", value1, value2, "sysDesc");
             return (Criteria) this;
         }
     }
